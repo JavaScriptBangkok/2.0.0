@@ -7,7 +7,7 @@
     id: string
     size: number
     horizontal: number
-    initialHeight: number
+    initialHeight?: number
   }
 
   let balloons: Item[] = []
