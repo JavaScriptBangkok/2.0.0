@@ -55,10 +55,10 @@
       }
     })
 
+    // send signal if animation ended
     $: {
-      if (ended) {
+      if (ended)
         dispatch('end', id)
-      }
     }
 </script>
 
