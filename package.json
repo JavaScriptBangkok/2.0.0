@@ -11,9 +11,13 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.5.10",
+    "@astrojs/svelte": "^5.4.0",
     "@astrojs/tailwind": "^5.1.0",
+    "@fontsource-variable/noto-sans-thai": "^5.0.14",
     "@fontsource/k2d": "^5.0.19",
+    "@neodrag/svelte": "^2.0.6",
     "astro": "^4.6.1",
+    "svelte": "^4.2.15",
     "tailwindcss": "^3.4.3",
     "typescript": "^5.4.5"
   },

@@ -1,22 +1,17 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Base from "$layouts/base.astro";
+
+import Playground from '$front/playground.svelte'
+import Date from '$front/date.svelte'
+import Location from '$front/location.svelte'
+import Center from '$front/center.astro'
 ---
 
-<Layout title="JavaScript Bangkok 2.0.0">
-  <div class="max-w-4xl p-8 mx-auto">
-    <div
-      class="bg-gradient-to-tr from-นาก to-ครามฝรั่ง rounded-xl border border-ขาวผ่อง/25 shadow-xl"
-    >
-      <div class="p-8 flex flex-col gap-5">
-        <div>
-          <h1 class="text-4xl font-semibold font-[K2D]">
-            JavaScript Bangkok 2.0.0
-          </h1>
-          <p class="text-xl text-white">Saturday, October 19, 2024</p>
-          <p class="text-xl text-white">True Digital Park West</p>
-        </div>
-        <p class="text-white">Save the date. More details coming soon.</p>
-      </div>
-    </div>
-  </div>
-</Layout>
+<Base title="JavaScript Bangkok 2.0.0">
+    <Playground client:idle>
+        <Date client:idle />
+        <Location client:idle />
+        <Center />
+    </Playground>
+    <section class="bg-ขาบดำ py-16"></section>
+</Base>
