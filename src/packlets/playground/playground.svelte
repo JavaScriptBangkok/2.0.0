@@ -13,8 +13,11 @@
 
   let balloons: Item[] = []
 
-  const addBalloon = (x: number, y = 0) => {
-    const size = Math.floor(Math.random() * 300300) + 60
+  const addBalloon = (
+    x = Math.floor(Math.random() * window.innerWidth),
+    y = 0
+  ) => {
+    const size = Math.floor(Math.random() * 300) + 60
 
     const item: Item = {
       id: (Math.random() + 1).toString(36).substring(7),
@@ -31,19 +34,38 @@
   }
 
   const handleClick: MouseEventHandler<HTMLElement> = e => {
-    addBalloon(e.pageX, -window.outerHeight + e.pageY)
+    addBalloon(e.pageX, -window.innerHeight + e.pageY)
   }
 
   onMount(() => {
     // randomly generate balloons
-    const interval = setInterval(() => {
-      addBalloon(Math.floor(Math.random() * window.outerWidth))
-      addBalloon(Math.floor(Math.random() * window.outerWidth))
-      addBalloon(Math.floor(Math.random() * window.outerWidth))
-      addBalloon(Math.floor(Math.random() * window.outerWidth))
-    }, 600)
+    const random = (amount: number) => {
+      for (let i = 0; i < amount; i++)
+        setTimeout(() => addBalloon(), Math.floor(Math.random() * 10000) % 1000)
+    }
 
-    return () => clearInterval(interval)
+    let interval = 0
+    let balloonPerSet = 0
+
+    // monitor window size
+    const handleResize = () => {
+      const targetSize =
+        window.innerWidth < 600 ? 3 : window.innerWidth < 1000 ? 4 : 5
+
+      if (balloonPerSet !== targetSize) {
+        clearInterval(interval)
+        balloonPerSet = targetSize
+        interval = setInterval(() => random(balloonPerSet), 800)
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+    handleResize()
+
+    return () => {
+      clearInterval(interval)
+      window.removeEventListener('resize', handleResize)
+    }
   })
 </script>
 
