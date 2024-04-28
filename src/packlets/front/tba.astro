@@ -1,0 +1,13 @@
+---
+const isShow = import.meta.env.DEV
+---
+
+{
+  isShow ? (
+    <slot />
+  ) : (
+    <p class="text-center">
+      To be announced, please look forward in the future!
+    </p>
+  )
+}

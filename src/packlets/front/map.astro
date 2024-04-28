@@ -18,7 +18,7 @@
       new mapkit.CoordinateSpan(0.1, 0.11)
     )
 
-    map.cameraZoomRange = new mapkit.CameraZoomRange(500, 75000)
+    map.cameraZoomRange = new mapkit.CameraZoomRange(250, 75000)
     map.region = region
 
     // @ts-expect-error CameraBoundaryDescription.region does not exist in Map
@@ -28,6 +28,7 @@
       new mapkit.MarkerAnnotation(coordinate, {
         title: 'True Digital Park West',
         subtitle: 'Grand Hall, 3rd Fl.',
+        selected: true,
       }),
     ])
   })
