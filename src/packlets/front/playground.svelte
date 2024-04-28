@@ -16,29 +16,27 @@
     balloons = balloons.filter(balloon => balloon.id !== event.detail)
   }
 
-  const handleClick: MouseEventHandler<HTMLElement> = (e) => {
+  const handleClick: MouseEventHandler<HTMLElement> = e => {
     const size = Math.floor(Math.random() * 200) + 60
 
     const item: Item = {
       id: (Math.random() + 1).toString(36).substring(7),
       size,
-      horizontal: e.pageX - (size / 2),
-      vertical: -window.outerHeight + e.pageY + size
+      horizontal: e.pageX - size / 2,
+      vertical: -window.outerHeight + e.pageY + size,
     }
 
     balloons = [...balloons, item]
   }
 </script>
 
-<section class="h-screen flex justify-center items-center flex-col relative overflow-hidden" on:mousedown={handleClick} role="none">
-    <slot />
-    {#each balloons as { id, size, horizontal, vertical } (`balloon-${id}`)}
-      <Balloon
-        id={id}
-        size={size}
-        horizontal={horizontal}
-        vertical={vertical}
-        on:end={handleEnd}
-      />
-    {/each}
+<section
+  class="relative flex h-screen flex-col items-center justify-center overflow-hidden"
+  on:mousedown={handleClick}
+  role="none"
+>
+  <slot />
+  {#each balloons as { id, size, horizontal, vertical } (`balloon-${id}`)}
+    <Balloon {id} {size} {horizontal} {vertical} on:end={handleEnd} />
+  {/each}
 </section>
