@@ -71,7 +71,7 @@
 </script>
 
 <section
-  class="relative flex h-screen flex-col items-center justify-center overflow-hidden"
+  class="relative flex h-[100dvh] flex-col items-center justify-center overflow-hidden"
   on:mousedown={handleClick}
   role="none"
 >
