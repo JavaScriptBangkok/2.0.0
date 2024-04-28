@@ -19,8 +19,10 @@
     )
 
     map.cameraZoomRange = new mapkit.CameraZoomRange(500, 75000)
-    map.cameraBoundary.region = region
     map.region = region
+
+    // @ts-expect-error CameraBoundaryDescription.region does not exist in Map
+    map.cameraBoundary = region
 
     map.showItems([
       new mapkit.MarkerAnnotation(coordinate, {
