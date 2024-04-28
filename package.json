@@ -18,6 +18,7 @@
     "@fontsource-variable/noto-sans-thai": "^5.0.14",
     "@fontsource/k2d": "^5.0.19",
     "@neodrag/svelte": "^2.0.6",
+    "@types/apple-mapkit-js-browser": "^5.65.7",
     "astro": "^4.6.1",
     "prettier": "^3.2.5",
     "prettier-plugin-astro": "^0.13.0",

@@ -1,0 +1,39 @@
+<div id="map" class="h-80"></div>
+
+<script>
+  window.addEventListener('load', function () {
+    mapkit.init({
+      authorizationCallback: done => {
+        fetch('https://api.rayriffy.com/appleMaps/token')
+          .then(res => res.text())
+          .then(done)
+      },
+      language: 'en',
+    })
+
+    const map = new mapkit.Map('map')
+    const coordinate = new mapkit.Coordinate(13.6869421, 100.6112208)
+    const region = new mapkit.CoordinateRegion(
+      coordinate,
+      new mapkit.CoordinateSpan(0.1, 0.11)
+    )
+
+    map.cameraZoomRange = new mapkit.CameraZoomRange(500, 75000)
+    map.cameraBoundary = region
+    map.region = region
+
+    map.showItems([
+      new mapkit.MarkerAnnotation(coordinate, {
+        title: 'True Digital Park West',
+        subtitle: 'Grand Hall, 3rd Fl.',
+      }),
+    ])
+  })
+</script>
+
+<script
+  src="https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.core.js"
+  crossorigin
+  async
+  data-libraries="services,full-map"
+  slot="body-end"></script>

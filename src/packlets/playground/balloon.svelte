@@ -32,28 +32,27 @@
     (vertical ? vertical - size / 2 : -size) + window.innerHeight / 2
   let mountedAt = performance.now()
 
-  const frame = () => {
-    if (ended) return
-
-    const time = (performance.now() - mountedAt) / 1000
-    const distance = 0.5 * acceleration * time ** 2
-
-    // calculate new height based on initial height and distance, would fly up
-    currentHeight = currentHeight + distance
-
-    // stop when it overshoots viewport height
-    if (-currentHeight - size * 2 > window.innerHeight) {
-      ended = true
-    }
-
-    requestAnimationFrame(frame)
-  }
-
   onMount(() => {
-    requestAnimationFrame(frame)
+    let frame = requestAnimationFrame(function loop() {
+      if (ended) return
+
+      const time = (performance.now() - mountedAt) / 1000
+      const distance = 0.5 * acceleration * time ** 2
+
+      // calculate new height based on initial height and distance, would fly up
+      currentHeight = currentHeight + distance
+
+      // stop when it overshoots viewport height
+      if (-currentHeight - size * 2 > window.innerHeight) {
+        ended = true
+      }
+
+      frame = requestAnimationFrame(loop)
+    })
 
     return () => {
       ended = true
+      cancelAnimationFrame(frame)
     }
   })
 
