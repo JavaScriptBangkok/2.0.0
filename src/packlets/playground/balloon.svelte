@@ -11,7 +11,7 @@
   export let size: number = 150
   export let horizontal: number = 0
   export let vertical: number | undefined
-  export let acceleration = -6 // px/s^2
+  export let acceleration = 6 // px/s^2
 
   const colors = [
     'text-น้ำครั่ง',
@@ -40,7 +40,7 @@
       const distance = 0.5 * acceleration * time ** 2
 
       // calculate new height based on initial height and distance, would fly up
-      currentHeight = currentHeight + distance
+      currentHeight = currentHeight - distance
 
       // stop when it overshoots viewport height
       if (-currentHeight - size * 2 > window.innerHeight) {
