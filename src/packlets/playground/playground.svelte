@@ -15,7 +15,8 @@
 
   const addBalloon = (
     x = Math.floor(Math.random() * window.innerWidth),
-    y = 0
+    y = 0,
+    half = false
   ) => {
     const size = Math.floor(Math.random() * 300) + 60
 
@@ -23,7 +24,7 @@
       id: (Math.random() + 1).toString(36).substring(7),
       size,
       horizontal: x - size / 2,
-      vertical: y + size,
+      vertical: y + (half ? size / 2 : size),
     }
 
     balloons = [...balloons, item]
@@ -34,7 +35,7 @@
   }
 
   const handleClick: MouseEventHandler<HTMLElement> = e => {
-    addBalloon(e.pageX, -window.innerHeight + e.pageY)
+    addBalloon(e.pageX, -window.innerHeight + e.pageY, true)
   }
 
   onMount(() => {
