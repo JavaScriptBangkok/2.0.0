@@ -1,0 +1,16 @@
+---
+import Base from '$layouts/base.astro'
+import Playground from '$front/playground.svelte'
+import Date from '$front/date.svelte'
+import Location from '$front/location.svelte'
+import Center from '$front/center.astro'
+---
+
+<Base title="JavaScript Bangkok 2.0.0">
+  <Playground client:idle>
+    <Date client:idle />
+    <Location client:idle />
+    <Center />
+  </Playground>
+  <section class="bg-ขาบดำ py-16"></section>
+</Base>
