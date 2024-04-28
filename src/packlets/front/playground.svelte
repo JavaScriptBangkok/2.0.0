@@ -30,7 +30,7 @@
   }
 </script>
 
-<section class="h-screen flex justify-center items-center flex-col relative overflow-hidden" on:mousedown={handleClick}>
+<section class="h-screen flex justify-center items-center flex-col relative overflow-hidden" on:mousedown={handleClick} role="none">
     <slot />
     {#each balloons as { id, size, horizontal, initialHeight } (`balloon-${id}`)}
       <Balloon
