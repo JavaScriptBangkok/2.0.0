@@ -7,7 +7,7 @@
     id: string
     size: number
     horizontal: number
-    initialHeight?: number
+    vertical?: number
   }
 
   let balloons: Item[] = []
@@ -23,7 +23,7 @@
       id: (Math.random() + 1).toString(36).substring(7),
       size,
       horizontal: e.pageX - (size / 2),
-      initialHeight: window.outerHeight - e.pageY - size
+      vertical: -window.outerHeight + e.pageY + size
     }
 
     balloons = [...balloons, item]
@@ -32,12 +32,12 @@
 
 <section class="h-screen flex justify-center items-center flex-col relative overflow-hidden" on:mousedown={handleClick} role="none">
     <slot />
-    {#each balloons as { id, size, horizontal, initialHeight } (`balloon-${id}`)}
+    {#each balloons as { id, size, horizontal, vertical } (`balloon-${id}`)}
       <Balloon
         id={id}
         size={size}
         horizontal={horizontal}
-        initialHeight={initialHeight}
+        vertical={vertical}
         on:end={handleEnd}
       />
     {/each}

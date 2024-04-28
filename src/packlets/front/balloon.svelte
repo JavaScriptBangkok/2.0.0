@@ -10,8 +10,8 @@
     export let id: string
     export let size: number = 150
     export let horizontal: number = 0
-    export let initialHeight: number | undefined = undefined
-    export let acceleration = -150 // px/s^2
+    export let vertical: number | undefined
+    export let acceleration = -6 // px/s^2
 
     const colors = [
       'text-น้ำครั่ง',
@@ -27,7 +27,8 @@
     const color = colors[Math.floor(Math.random() * colors.length)]
 
     // by default, if initialHeight is not provided, size will determine height position
-    let currentHeight = initialHeight ?? -size
+    const currentWidth = horizontal + (size / 2) - window.innerWidth / 2
+    let currentHeight = (vertical ? vertical - (size / 2) : -size) + (window.innerHeight / 2)
     let mountedAt = performance.now()
 
     const frame = () => {
@@ -37,10 +38,10 @@
         const distance = 0.5 * acceleration * time ** 2
 
         // calculate new height based on initial height and distance, would fly up
-        currentHeight = initialHeight ? initialHeight - distance : -size + distance
+        currentHeight = currentHeight + distance
 
         // stop when it overshoots viewport height
-        if (currentHeight > window.innerHeight) {
+        if ((-currentHeight - (size * 2)) > window.innerHeight) {
           ended = true
         }
 
@@ -60,10 +61,12 @@
       if (ended)
         dispatch('end', id)
     }
+
+    $: computedStyle = `width:${size}px;height:${size}px;transform:translate3d(${currentWidth}px,${currentHeight}px, 0);`
 </script>
 
 {#if variant === 'inner'}
-  <Inner class="absolute {color}" style="width:{size}px;height:{size}px;left:{horizontal};bottom:{currentHeight};" />
+  <Inner class="absolute {color}" style={computedStyle} />
 {:else}
-  <Outer class="absolute {color}" style="width:{size}px;height:{size}px;left:{horizontal};bottom:{currentHeight};" />
+  <Outer class="absolute {color}" style={computedStyle} />
 {/if}
