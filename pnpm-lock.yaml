@@ -50,6 +50,9 @@ importers:
       svelte:
         specifier: ^4.2.15
         version: 4.2.15
+      tailwind-thaitone:
+        specifier: ^1.1.0
+        version: 1.1.0
       tailwindcss:
         specifier: ^3.4.3
         version: 3.4.3
@@ -2240,6 +2243,9 @@ packages:
   svelte@4.2.15:
     resolution: {integrity: sha512-j9KJSccHgLeRERPlhMKrCXpk2TqL2m5Z+k+OBTQhZOhIdCCd3WfqV+ylPWeipEwq17P/ekiSFWwrVQv93i3bsg==}
     engines: {node: '>=16'}
+
+  tailwind-thaitone@1.1.0:
+    resolution: {integrity: sha512-oztF8jBk0x5MqixmApYNIEmWPQr8XsOy3MK3kkH0P6i7Rl7cl47zu4OOHURi644w56ntaycdFTC/QYmnDUfOTw==}
 
   tailwindcss@3.4.3:
     resolution: {integrity: sha512-U7sxQk/n397Bmx4JHbJx/iSOOv5G+II3f1kpLpY2QeUv5DcPdcTsYLlusZfq1NthHS1c1cZoyFmmkex1rzke0A==}
@@ -5050,6 +5056,8 @@ snapshots:
       locate-character: 3.0.0
       magic-string: 0.30.9
       periscopic: 3.1.0
+
+  tailwind-thaitone@1.1.0: {}
 
   tailwindcss@3.4.3:
     dependencies:
