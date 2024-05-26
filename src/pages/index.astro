@@ -3,23 +3,44 @@ import Base from '$layouts/base.astro'
 
 import Center from '$front/center.astro'
 import Schedule from '$front/schedule.astro'
+import Conference from '$front/conference.astro'
 import Map from '$front/map.astro'
 import Sponsors from '$front/sponsors.astro'
 import Speakers from '$front/speakers.astro'
 
 import Playground from '$playground/playground.svelte'
-import Date from '$playground/date.svelte'
-import Location from '$playground/location.svelte'
 ---
 
 <Base title="JavaScript Bangkok 2.0.0">
   <Playground client:idle>
-    <Date client:idle />
-    <Location client:idle />
     <Center />
   </Playground>
+  <section
+    class="grid grid-cols-1 gap-8 bg-เหล็กไหล px-8 py-12 text-white md:grid-cols-2"
+  >
+    <div class="text-center font-bold">
+      <h1 class="text-xl">Day 1</h1>
+      <h2 class="text-4xl">Workshop</h2>
+      <h3 class="text-xl">(Fri) October 18, 2024</h3>
+      <p class="pt-4 text-lg font-normal">Microsoft (Thailand) Ltd.</p>
+    </div>
+    <div class="text-center font-bold">
+      <h1 class="text-xl">Day 2</h1>
+      <h2 class="text-4xl">Conference</h2>
+      <h3 class="text-xl">(Sat) October 19, 2024</h3>
+      <p class="pt-4 text-lg font-normal">True Digital Park West</p>
+    </div>
+  </section>
   <Map />
   <Speakers />
   <Schedule />
   <Sponsors />
+
+  <script
+    src="https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.core.js"
+    crossorigin
+    async
+    data-libraries="services,full-map"
+    is:inline
+    slot="body-end"></script>
 </Base>
