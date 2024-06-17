@@ -3,6 +3,8 @@ import { Image } from 'astro:assets'
 
 import odds from '$assets/odds.svg'
 import tdpk from '$assets/tdpk.svg'
+import microsoft from '$assets/microsoft.png'
+import creatorsgarten from '$assets/creatorsgarten.svg'
 ---
 
 <section class="py-12 text-เหล็กไหล">
@@ -23,19 +25,25 @@ import tdpk from '$assets/tdpk.svg'
     <li class="rounded-xl bg-white px-8 py-6 text-เหล็กไหล">
       <h2 class="pb-4 text-2xl font-bold">Platinum</h2>
       <div class="flex flex-wrap justify-center gap-6">
-        <Image src={odds} alt="ODDS" />
+        <Image src={odds} alt="ODDS" class="h-24 w-auto" />
       </div>
     </li>
     <li class="rounded-xl bg-white px-8 py-6 text-เหล็กไหล">
       <h2 class="pb-4 text-2xl font-bold">Gold</h2>
       <div class="flex flex-wrap justify-center gap-6">
-        <Image src={tdpk} alt="True Digital Park" />
+        <Image src={tdpk} alt="True Digital Park" class="h-12 w-auto" />
       </div>
     </li>
     <li class="rounded-xl bg-white px-8 py-6 text-เหล็กไหล">
       <h2 class="pb-4 text-2xl font-bold">Silver</h2>
       <div class="flex flex-wrap justify-center gap-6">
-        <p class="px-4 text-center">Sponsorship slot available!</p>
+        <Image src={microsoft} alt="Microsoft" class="h-12 w-auto" />
+      </div>
+    </li>
+    <li class="rounded-xl bg-white px-8 py-6 text-เหล็กไหล">
+      <h2 class="pb-4 text-2xl font-bold">Communities</h2>
+      <div class="flex flex-wrap justify-center gap-6">
+        <Image src={creatorsgarten} alt="Creatorsgarten" class="h-12 w-auto" />
       </div>
     </li>
   </ul>

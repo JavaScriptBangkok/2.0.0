@@ -7,7 +7,7 @@
   use:draggable={{ bounds: 'body' }}
 >
   <p>October 18, 2024</p>
-  <p>Microsoft (Thailand) Ltd.</p>
+  <p>Microsoft Thailand</p>
 </div>
 
 <div
