@@ -9,15 +9,19 @@ export default {
     extend: {
       fontFamily: {
         sans: [
-          "'Noto Sans Thai Variable'",
+          "K2D",
           ...defaultConfig.theme.fontFamily.sans,
         ],
         heading: ['K2D', ...defaultConfig.theme.fontFamily.sans],
       },
+      colors: {
+        brand: {
+          yellow: '#F1D816',
+          green: '#007454',
+          orange: '#FF6633',
+          blue: '#29C7C8',
+        }
+      },
     },
   },
-  plugins: [
-    // https://rayriffy.github.io/tailwind-thaitone/
-    thaitone,
-  ],
 }

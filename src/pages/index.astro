@@ -1,39 +1,31 @@
 ---
 import Base from '$layouts/base.astro'
 
-import Center from '$front/center.astro'
-import Schedule from '$front/schedule.astro'
-import Conference from '$front/conference.astro'
-import Map from '$front/map.astro'
-import Sponsors from '$front/sponsors.astro'
-import Speakers from '$front/speakers.astro'
+import Kanok from '$sprites/kanok.svelte'
+import Patterns from '$playground/patterns.svelte'
+import Schedule from '$new-front/schedule.astro'
+import Map from '$new-front/map.astro'
+import Speakers from '$new-front/speakers.astro'
+import Sponsors from '$new-front/sponsors.astro'
 
-import Playground from '$playground/playground.svelte'
 ---
 
 <Base title="JavaScript Bangkok 2.0.0">
-  <Playground client:idle>
-    <Center />
-  </Playground>
-  <section
-    class="grid grid-cols-1 gap-8 bg-เหล็กไหล px-8 py-12 text-white md:grid-cols-2"
-  >
-    <div class="text-center font-bold">
-      <h1 class="text-xl">Day 1</h1>
-      <h2 class="text-4xl">Workshop</h2>
-      <h3 class="text-xl">(Fri) October 18, 2024</h3>
-      <p class="pt-4 text-lg font-normal">Microsoft Thailand</p>
+  <div class="h-[64rem] bg-white overflow-hidden">
+    <div class="max-w-[88rem] mx-auto relative">
+      <div class="absolute top-8 left-8">
+        <Kanok size="xl" color="orange" />
+        <h1 class="text-brand-orange text-right text-[2.2rem] font-extrabold">JavaScript</h1>
+        <h1 class="text-brand-orange text-right text-[2.2rem] font-extrabold">Bangkok 2.0.0</h1>
+      </div>
     </div>
-    <div class="text-center font-bold">
-      <h1 class="text-xl">Day 2</h1>
-      <h2 class="text-4xl">Conference</h2>
-      <h3 class="text-xl">(Sat) October 19, 2024</h3>
-      <p class="pt-4 text-lg font-normal">True Digital Park West</p>
+    <div class="max-w-[128rem] mx-auto">
+      <Patterns client:idle />
     </div>
-  </section>
+  </div>
+  <Schedule />
   <Map />
   <Speakers />
-  <Schedule />
   <Sponsors />
 
   <script

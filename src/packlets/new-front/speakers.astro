@@ -1,0 +1,43 @@
+---
+import Kanok from '$sprites/kanok.svelte'
+
+interface Speaker {
+  id: string
+  firstName: string
+  lastName: string
+  fullName: string
+  tagLine: string
+  profilePicture: string
+  isTopSpeaker: boolean
+}
+
+const speakers: Speaker[] = await fetch("https://sessionize.com/api/v2/i9esy36q/view/SpeakerWall")
+  .then(o => o.json())
+---
+
+<section class="bg-brand-green px-8 py-12">
+  <h1 class="text-5xl font-bold text-brand-yellow text-center pb-6">Speakers</h1>
+  <p class="mx-auto max-w-3xl text-center text-white pb-12">
+    We're looking for speakers who are passionate about their craft and have a
+    story to share. If you're interested in speaking at the conference, please
+    submit a proposal at <a class="text-brand-blue" href="https://sessionize.com/javascript-bangkok-2024/">Sessionize</a>.
+  </p>
+  <div class="max-w-[96rem] mx-auto grid md:grid-cols-2 xl:grid-cols-3 gap-12">
+    {speakers.map(({
+      fullName,
+      tagLine,
+      profilePicture
+    }) => (
+      <article class="bg-white rounded-tr-3xl p-6 flex space-x-6">
+        <div class="relative shrink-0">
+          <img src={profilePicture} class="w-24 h-24 rounded-tr-2xl" />
+          <Kanok size="s" color="blue" class="absolute -bottom-1 -left-1" variant="invert-x" />
+        </div>
+        <div>
+          <h1 class="font-bold text-xl">{fullName}</h1>
+          <h2 class="line-clamp-2">{tagLine}</h2>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>
