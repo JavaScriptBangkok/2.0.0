@@ -7,6 +7,7 @@ import microsoft from '$assets/microsoft.png'
 import eventpop from '$assets/eventpop.png'
 import jetbrains from '$assets/jetbrains.svg'
 import creatorsgarten from '$assets/creatorsgarten.svg'
+import earnin from '$assets/earnin.svg'
 ---
 
 <section class="py-12 px-8 bg-white">
@@ -27,32 +28,39 @@ import creatorsgarten from '$assets/creatorsgarten.svg'
   <div class="space-y-12 pb-8">
     <div>
       <h1 class="text-center font-bold text-3xl pb-6">Platinum</h1>
-      <div class="flex flex-wrap justify-center gap-x-8 gap-y-6">
+      <div class="sponsor-container">
         <Image src={odds} alt="ODDS" class="h-28 w-auto" />
       </div>
     </div>
 
     <div>
       <h1 class="text-center font-bold text-3xl pb-6">Gold</h1>
-      <div class="flex flex-wrap justify-center gap-x-8 gap-y-6">
+      <div class="sponsor-container">
         <Image src={tdpk} alt="True Digital Park" class="h-16 w-auto" />
       </div>
     </div>
 
     <div>
       <h1 class="text-center font-bold text-3xl pb-6">Silver</h1>
-      <div class="flex flex-wrap justify-center gap-x-8 gap-y-6">
+      <div class="sponsor-container">
         <Image src={microsoft} alt="Microsoft" class="h-8 w-auto" />
-        <Image src={eventpop} alt="Microsoft" class="h-8 w-auto" />
+        <Image src={eventpop} alt="Eventpop" class="h-8 w-auto" />
+        <Image src={earnin} alt="EarnIn" class="h-10 w-auto" />
       </div>
     </div>
 
     <div>
       <h1 class="text-center font-bold text-3xl pb-6">Communities</h1>
-      <div class="flex flex-wrap justify-center gap-x-8 gap-y-6">
+      <div class="sponsor-container">
         <Image src={creatorsgarten} alt="Creatorsgarten" class="h-9 w-auto" />
         <Image src={jetbrains} alt="Creatorsgarten" class="h-8 w-auto" />
       </div>
     </div>
   </div>
 </section>
+
+<style>
+  .sponsor-container {
+    @apply flex flex-wrap justify-center items-center gap-x-8 gap-y-6
+  }
+</style>
