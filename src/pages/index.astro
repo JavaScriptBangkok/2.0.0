@@ -1,26 +1,23 @@
 ---
 import Base from '$layouts/base.astro'
 
-import Kanok from '$sprites/kanok.svelte'
+import Logo from '$new-front/logo.astro'
 import Patterns from '$playground/patterns.svelte'
 import Schedule from '$new-front/schedule.astro'
 import Map from '$new-front/map.astro'
 import Speakers from '$new-front/speakers.astro'
 import Sponsors from '$new-front/sponsors.astro'
-
+import MobileStrip from '$playground/mobileStrip.svelte'
 ---
 
 <Base title="JavaScript Bangkok 2.0.0">
-  <div class="h-[64rem] bg-white overflow-hidden">
-    <div class="max-w-[88rem] mx-auto relative">
-      <div class="absolute top-8 left-8">
-        <Kanok size="xl" color="orange" />
-        <h1 class="text-brand-orange text-right text-[2.2rem] font-extrabold">JavaScript</h1>
-        <h1 class="text-brand-orange text-right text-[2.2rem] font-extrabold">Bangkok 2.0.0</h1>
-      </div>
-    </div>
-    <div class="max-w-[128rem] mx-auto">
+  <div class="max-w-[88rem] mx-auto h-screen md:h-[64rem] bg-white overflow-hidden relative">
+    <Logo />
+    <div class="max-w-[128rem] mx-auto hidden md:block">
       <Patterns client:idle />
+    </div>
+    <div class="max-w-[128rem] mx-auto md:hidden absolute bottom-0 -left-8">
+      <MobileStrip client:idle />
     </div>
   </div>
   <Schedule />
