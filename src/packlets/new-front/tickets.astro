@@ -1,0 +1,21 @@
+---
+import { Image } from 'astro:assets'
+
+import ticketsAvailable from '$assets/tickets-avail.svg'
+---
+
+<section class="bg-brand-blue px-8 py-12">
+    <h1 class="text-5xl font-bold text-white text-center pb-6">Tickets</h1>
+    <p class="mx-auto max-w-3xl text-center text-white pb-12 text-lg">
+        Tickets are on sale, and available for purchase at <a class="text-brand-green" href="https://www.eventpop.me/e/38704/javascript-bangkok-2-0-0">Eventpop</a>
+    </p>
+    <div class="flex justify-center">
+        <a
+            href="https://www.eventpop.me/e/38704/javascript-bangkok-2-0-0"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-white rounded-xl shadow border">
+            <Image src={ticketsAvailable} alt="Ticket avaialble at Eventpop" class="w-72" />
+        </a>
+    </div>
+</section>
