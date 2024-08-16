@@ -1,4 +1,5 @@
 ---
+import { Picture } from 'astro:assets'
 import Kanok from '$sprites/kanok.svelte'
 
 interface Speaker {
@@ -30,7 +31,14 @@ const speakers: Speaker[] = await fetch("https://sessionize.com/api/v2/i9esy36q/
     }) => (
       <article class="bg-white rounded-tr-3xl p-6 flex space-x-6">
         <div class="relative shrink-0">
-          <img src={profilePicture} class="w-24 h-24 rounded-tr-2xl" />
+          <Picture
+              src={profilePicture}
+              class="w-24 h-24 rounded-tr-2xl"
+              formats={['avif', 'webp']}
+              alt={fullName}
+              width="300"
+              height="300"
+          />
           <Kanok size="s" color="blue" class="absolute -bottom-1 -left-1" variant="invert-x" />
         </div>
         <div>

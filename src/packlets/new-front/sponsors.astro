@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets'
+import { Image, Picture } from 'astro:assets'
 
 import odds from '$assets/odds.svg'
 import tdpk from '$assets/tdpk.svg'
@@ -46,8 +46,8 @@ import devcon from '$assets/devcon.svg'
       <div class="sponsor-container">
         <Image src={earnin} alt="EarnIn" class="h-10 w-auto" />
         <Image src={devcon} alt="Road to Devcon" class="h-14 w-auto" />
-        <Image src={microsoft} alt="Microsoft" class="h-8 w-auto" />
-        <Image src={eventpop} alt="Eventpop" class="h-8 w-auto" />
+        <Picture src={microsoft} alt="Microsoft" formats={['avif', 'webp']} class="h-8 w-auto" />
+        <Picture src={eventpop} alt="Eventpop" formats={['avif', 'webp']} class="h-8 w-auto" />
       </div>
     </div>
 
