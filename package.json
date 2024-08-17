@@ -12,23 +12,22 @@
     "format": "prettier --write ."
   },
   "devDependencies": {
-    "@astrojs/check": "^0.5.10",
-    "@astrojs/svelte": "^5.4.0",
+    "@astrojs/check": "^0.9.2",
+    "@astrojs/svelte": "^5.7.0",
     "@astrojs/tailwind": "^5.1.0",
     "@fontsource-variable/noto-sans-thai": "^5.0.14",
-    "@fontsource/k2d": "^5.0.19",
-    "@neodrag/svelte": "^2.0.6",
-    "@types/apple-mapkit-js-browser": "^5.65.7",
-    "astro": "^4.6.1",
-    "prettier": "^3.2.5",
-    "prettier-plugin-astro": "^0.13.0",
-    "prettier-plugin-svelte": "^3.2.3",
-    "prettier-plugin-tailwindcss": "^0.5.14",
-    "sharp": "^0.33.3",
-    "svelte": "^4.2.15",
+    "@fontsource/k2d": "^5.0.20",
+    "@types/apple-mapkit-js-browser": "^5.78.0",
+    "astro": "^4.14.2",
+    "prettier": "^3.3.3",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-svelte": "^3.2.6",
+    "prettier-plugin-tailwindcss": "^0.6.6",
+    "sharp": "^0.33.5",
+    "svelte": "^4.2.18",
     "tailwind-thaitone": "^1.1.0",
-    "tailwindcss": "^3.4.3",
-    "typescript": "^5.4.5"
+    "tailwindcss": "^3.4.10",
+    "typescript": "^5.5.4"
   },
   "dependencies": {
     "clsx": "^2.1.1"
