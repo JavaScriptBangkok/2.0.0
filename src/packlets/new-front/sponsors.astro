@@ -10,8 +10,15 @@ import tdpk from '$assets/tdpk.svg'
 // Silver
 import earnin from '$assets/earnin.svg'
 import devcon from '$assets/devcon.svg'
+import cleverse from '$assets/cleverse.svg'
+import fastwork from '$assets/fastwork.svg'
+import zigma from '$assets/zigma.svg'
 import microsoft from '$assets/microsoft.png'
 import eventpop from '$assets/eventpop.png'
+
+// Patron
+import borntodev from '$assets/borntodev.png'
+// import tpa from '$assets/tpa.svg'
 
 // Communities
 import creatorsgarten from '$assets/creatorsgarten.svg'
@@ -33,7 +40,7 @@ import jetbrains from '$assets/jetbrains.svg'
     </p>
   </div>
 
-  <div class="space-y-12 pb-8">
+  <div class="space-y-12 pb-8 max-w-5xl mx-auto">
     <div>
       <h1 class="text-center font-bold text-3xl pb-6">Platinum</h1>
       <div class="sponsor-container">
@@ -53,8 +60,19 @@ import jetbrains from '$assets/jetbrains.svg'
       <div class="sponsor-container">
         <Image src={earnin} alt="EarnIn" class="h-10 w-auto" />
         <Image src={devcon} alt="Road to Devcon" class="h-14 w-auto" />
+        <Image src={cleverse} alt="Cleverse" class="h-12 w-auto" />
+        <Image src={fastwork} alt="Fastwork" class="h-10 w-auto" />
+        <Image src={zigma} alt="ZIGMA World Tech" class="h-12 w-auto" />
         <Picture src={microsoft} alt="Microsoft" formats={['avif', 'webp']} class="h-8 w-auto" />
         <Picture src={eventpop} alt="Eventpop" formats={['avif', 'webp']} class="h-8 w-auto" />
+      </div>
+    </div>
+
+    <div>
+      <h1 class="text-center font-bold text-3xl pb-6">Patron</h1>
+      <div class="sponsor-container">
+        <Image src={borntodev} alt="Borntodev" class="h-9 w-auto" />
+        <!--<Image src={tpa} alt="Thai Programmer Association" class="h-12 w-auto" />-->
       </div>
     </div>
 
@@ -70,6 +88,6 @@ import jetbrains from '$assets/jetbrains.svg'
 
 <style>
   .sponsor-container {
-    @apply flex flex-wrap justify-center items-center gap-x-12 gap-y-8
+    @apply flex flex-wrap justify-center items-center gap-x-12 gap-y-10
   }
 </style>
