@@ -1,0 +1,67 @@
+---
+import { Picture } from 'astro:assets';
+
+import { getSessionizeData } from '$sessionize/getSessionizeData'
+import type { Session, Speaker } from "$sessionize/types";
+import Base from "$layouts/base.astro";
+import LogoHorizontal from "$sprites/logoHorizontal.astro";
+
+export interface Props {
+    session: Session
+    speakers: Speaker[]
+}
+
+export const getStaticPaths = async () => {
+    const { sessions, speakers } = await getSessionizeData()
+	return sessions.map(session => ({
+        params: {
+            id: session.id
+        },
+        props: {
+            session,
+            speakers: session.speakers.map(speakerId => speakers.find(speaker => speaker.id === speakerId))
+        }
+    }));
+}
+
+const { session, speakers  } = Astro.props
+---
+
+<Base title=`${session.title} | JavaScript Bangkok 2.0.0`>
+    <nav class="py-2 px-4 bg-brand-orange">
+        <a href="/" data-astro-prefetch>
+            <LogoHorizontal class="h-12 text-white" />
+        </a>
+    </nav>
+    <section class="px-20 pb-12 h-[calc(100dvh-224px)]">
+        <div class="pt-24 grid grid-cols-1 md:grid-cols-2 gap-8">
+            {speakers.map(speaker => (
+                <div class="flex space-x-4 items-center">
+                    <div class="w-32 h-32 shrink-0">
+                        <Picture
+                            src={speaker.profilePicture}
+                            class="w-32 h-32 rounded-full"
+                            formats={['avif', 'webp']}
+                            alt={speaker.fullName}
+                            width="400"
+                            height="400"
+                        />
+                    </div>
+                    <div>
+                        <h1 class="text-4xl font-extrabold">{speaker.fullName}</h1>
+                        <h2 class="text-lg">{speaker.tagLine}</h2>
+                        <div class="flex space-x-2 pt-2">
+                            {speaker.links.map(link => (
+                                <a href={link.url} class="underline">{link.title}</a>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </div>
+        <div class="max-w-xl pt-8 space-y-4">
+            <h1 class="font-bold text-2xl">{session.title}</h1>
+            <p>{session.description}</p>
+        </div>
+    </section>
+</Base>

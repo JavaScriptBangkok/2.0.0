@@ -1,0 +1,38 @@
+---
+import type { SessionizeDate } from "../sessionize/types";
+import { clsx } from "clsx";
+import Slot from '$schedule/slot.astro'
+import dayjs from "dayjs";
+import utc from 'dayjs/plugin/utc'
+import timezone from 'dayjs/plugin/timezone'
+
+export type Props = SessionizeDate
+
+dayjs.extend(utc)
+dayjs.extend(timezone)
+
+const { rooms, timeSlots } = Astro.props
+---
+
+<div class="grid gap-2 grid-cols-1 md:[grid-template-columns:minmax(100px,1fr)_minmax(0,3fr)_minmax(0,3fr)_minmax(0,3fr)]">
+    {rooms.map((room, i) => (
+        <div class={clsx(i === 0 && 'md:col-start-2', 'font-bold text-xl md:block hidden pb-2')}>{room.name.replace(/(\sat\s.+)$/, '').trim()}</div>
+    ))}
+    {timeSlots.map((timeSlot, i) => {
+        const time = dayjs(`2024-10-18T${timeSlot.slotStart}.000Z`).tz('Asia/Bangkok').format("HH:mm")
+
+        return (
+            <>
+                <div class="hidden md:block md:col-start-1">{time}</div>
+                {timeSlot.rooms.map(room => (
+                    <Slot time={time} {...room} />
+                ))}
+                {i + 1 !== timeSlots.length && (
+                    <div class="col-span-7 hidden md:block">
+                        <div class="border-b border-gray-300"></div>
+                    </div>
+                )}
+            </>
+        )
+    })}
+</div>

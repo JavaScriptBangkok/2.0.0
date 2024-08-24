@@ -3,12 +3,13 @@ import Base from '$layouts/base.astro'
 
 import Logo from '$new-front/logo.astro'
 import Patterns from '$playground/patterns.svelte'
-import Schedule from '$new-front/schedule.astro'
+import Dates from '$new-front/dates.astro'
 import Map from '$new-front/map.astro'
 import Tickets from '$new-front/tickets.astro'
 import Speakers from '$new-front/speakers.astro'
 import Sponsors from '$new-front/sponsors.astro'
 import MobileStrip from '$playground/mobileStrip.svelte'
+import Schedule from "$new-front/schedule.astro";
 ---
 
 <Base title="JavaScript Bangkok 2.0.0">
@@ -21,12 +22,14 @@ import MobileStrip from '$playground/mobileStrip.svelte'
       <MobileStrip client:idle />
     </div>
   </div>
-  <Schedule />
+  <Dates />
   <Map />
   <Tickets />
-  <Speakers />
+  <Schedule />
+  <!--<Speakers />-->
   <Sponsors />
 
+  <script type="module" src="https://cdn.jsdelivr.net/npm/eventpop-tickets-widget@3.0.0-next.8/dist/eventpop-tickets-widget.js"></script>
   <script
     src="https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.core.js"
     crossorigin="anonymous"

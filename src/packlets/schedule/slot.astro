@@ -1,0 +1,30 @@
+---
+import type { TimeSlot } from '$sessionize/types'
+import {clsx} from "clsx";
+import Session from "./session.astro";
+
+export type Props = TimeSlot['rooms'][number] & {
+    time: string
+}
+
+const { index, name, session, time } = Astro.props
+
+const builtClassName = clsx(
+    index === 0 && 'md:col-start-2',
+    index === 1 && 'md:col-start-3',
+    index === 2 && 'md:col-start-4',
+    !session.isServiceSession ? 'bg-sky-600 hover:bg-sky-800 transition text-white' : 'bg-amber-500 text-white',
+    session.isServiceSession ? 'py-2' : 'py-4',
+    'rounded-md px-4'
+)
+---
+
+{session.isServiceSession ? (
+    <div class={builtClassName}>
+        <Session time={time} location={name} {...session} />
+    </div>
+) : (
+    <a href={`/session/${session.id}`} class={builtClassName} data-astro-prefetch>
+        <Session time={time} location={name} {...session} />
+    </a>
+)}

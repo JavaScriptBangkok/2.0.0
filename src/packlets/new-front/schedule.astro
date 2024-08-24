@@ -1,18 +1,33 @@
 ---
-import ScheduleTabs from '$schedule/tabs.svelte'
+import { experimental_AstroContainer } from 'astro/container'
+import { getSessionizeSchedules } from '$sessionize/getSessionizeSchedules'
+
+import Day from "$schedule/day.astro";
+import Switcher from "$schedule/switcher.svelte";
+
+const schedules = await getSessionizeSchedules()
+
+const container = await experimental_AstroContainer.create();
+const workshopDay = await container.renderToString(Day, {
+    // @ts-ignore
+    props: schedules[0]
+});
+const conferenceDay = await container.renderToString(Day, {
+    // @ts-ignore
+    props: schedules[1]
+});
 ---
 
-<section class="grid grid-cols-1 gap-8 bg-brand-orange px-8 py-12 text-white md:grid-cols-2">
-  <div class="text-center font-bold">
-    <h1 class="text-xl">Day 1</h1>
-    <h2 class="text-4xl">Workshop</h2>
-    <h3 class="text-xl">(Fri) October 18, 2024</h3>
-    <p class="pt-4 text-lg font-normal">Microsoft Thailand</p>
-  </div>
-  <div class="text-center font-bold">
-    <h1 class="text-xl">Day 2</h1>
-    <h2 class="text-4xl">Conference</h2>
-    <h3 class="text-xl">(Sat) October 19, 2024</h3>
-    <p class="pt-4 text-lg font-normal">True Digital Park West</p>
-  </div>
+<section class="py-12 px-8 bg-white">
+    <div class="pb-12 text-center">
+        <h1 class="pb-6 text-5xl font-bold text-brand-orange">Schedule</h1>
+    </div>
+
+    <Switcher
+        workshopHtml={workshopDay}
+        conferenceHtml={conferenceDay}
+        client:idle
+    />
+    <!--<Day {...schedules[0]} />-->
+    <!--<Day {...schedules[1]} />-->
 </section>

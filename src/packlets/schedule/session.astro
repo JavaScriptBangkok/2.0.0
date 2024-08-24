@@ -1,0 +1,29 @@
+---
+import { clsx } from 'clsx'
+import type { TimeSlot } from '$sessionize/types'
+
+export type Props = TimeSlot['rooms'][number]['session'] & {
+    time: string
+    location: string
+}
+
+const { time, location, isServiceSession, categories, title, speakers } = Astro.props
+---
+
+<p class={clsx(!isServiceSession && "pb-2", 'md:hidden')}>{time} @{location.replace(/(\sat\s.+)$/, '').trim()}</p>
+
+{!isServiceSession && (
+<div class="flex pb-2">
+    <p class="text-xs bg-white px-2 py-0.5 text-black rounded-sm font-semibold">
+        {categories.find(c => c.name === 'Session language')?.categoryItems[0].name === 'Thai' ? '🇹🇭 Thai' : '🇬🇧 English'}
+    </p>
+</div>
+)}
+<p class="font-bold">{title}</p>
+{!isServiceSession && (
+    <div class="pt-2">
+        {speakers.map(speaker => (
+            <p>{speaker.name}</p>
+        ))}
+    </div>
+)}

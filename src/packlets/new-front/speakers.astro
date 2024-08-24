@@ -1,19 +1,9 @@
 ---
 import { Picture } from 'astro:assets'
 import Kanok from '$sprites/kanok.svelte'
+import { getSessionizeData } from '$sessionize/getSessionizeData'
 
-interface Speaker {
-  id: string
-  firstName: string
-  lastName: string
-  fullName: string
-  tagLine: string
-  profilePicture: string
-  isTopSpeaker: boolean
-}
-
-const speakers: Speaker[] = await fetch("https://sessionize.com/api/v2/i9esy36q/view/SpeakerWall")
-  .then(o => o.json())
+const { speakers } = await getSessionizeData()
 ---
 
 <section class="bg-brand-green px-8 py-12">
