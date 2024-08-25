@@ -15,10 +15,10 @@ import Schedule from "$new-front/schedule.astro";
   <div class="max-w-[88rem] mx-auto h-screen md:h-[64rem] bg-white overflow-hidden relative">
     <Logo />
     <div class="max-w-[128rem] mx-auto hidden md:block">
-      <Patterns client:idle />
+      <Patterns client:only="svelte" />
     </div>
     <div class="max-w-[128rem] mx-auto md:hidden absolute bottom-0 -left-8">
-      <MobileStrip client:idle />
+      <MobileStrip client:only="svelte" />
     </div>
   </div>
   <Dates />

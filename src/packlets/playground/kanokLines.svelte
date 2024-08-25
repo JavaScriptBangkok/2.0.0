@@ -13,11 +13,12 @@
 
 <div class="flex">
   <div style={`padding-left: ${basePadding * padding}rem`}></div>
-  {#each Array.from({ length }) as _}
+  {#each Array.from({ length }) as _, i}
     <Kanok
       size={size}
       color={pickRandom(['yellow', 'orange', 'blue', 'green'])}
       variant={pickRandom(['invert-x', 'invert-xy', 'normal'])}
+      col={i}
       animate
     />
   {/each}
