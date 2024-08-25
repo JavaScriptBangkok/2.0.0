@@ -1,30 +1,38 @@
 ---
+import dayjs from "dayjs";
+import utc from 'dayjs/plugin/utc'
+import timezone from 'dayjs/plugin/timezone'
 import { Picture } from 'astro:assets';
 
 import { getSessionizeData } from '$sessionize/getSessionizeData'
-import type { Session, Speaker } from "$sessionize/types";
+import type { Session, Speaker, Room } from "$sessionize/types";
 import Base from "$layouts/base.astro";
 import LogoHorizontal from "$sprites/logoHorizontal.astro";
 
 export interface Props {
     session: Session
     speakers: Speaker[]
+    room: Room
 }
 
+dayjs.extend(utc)
+dayjs.extend(timezone)
+
 export const getStaticPaths = async () => {
-    const { sessions, speakers } = await getSessionizeData()
+    const { sessions, speakers, rooms } = await getSessionizeData()
 	return sessions.map(session => ({
         params: {
             id: session.id
         },
         props: {
             session,
-            speakers: session.speakers.map(speakerId => speakers.find(speaker => speaker.id === speakerId))
+            speakers: session.speakers.map(speakerId => speakers.find(speaker => speaker.id === speakerId)),
+            room: rooms.find(room => room.id === session.roomId),
         }
     }));
 }
 
-const { session, speakers  } = Astro.props
+const { session, speakers, room  } = Astro.props
 ---
 
 <Base title=`${session.title} | JavaScript Bangkok 2.0.0`>
@@ -61,6 +69,9 @@ const { session, speakers  } = Astro.props
         </div>
         <div class="max-w-xl pt-8 space-y-4">
             <h1 class="font-bold text-2xl">{session.title}</h1>
+            <div class="flex">
+                <p class="font-mono text-white bg-black rounded py-1 px-3 text-sm font-bold">{dayjs(session.startsAt).tz('Asia/Bangkok').format("(ddd) D MMMM YYYY, HH:mm")} @{room.name}</p>
+            </div>
             <p>{session.description}</p>
         </div>
     </section>
