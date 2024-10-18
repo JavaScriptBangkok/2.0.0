@@ -4,7 +4,7 @@
     export let workshopHtml: string
     export let conferenceHtml: string
 
-    let isWorkshop = true
+    let isWorkshop = false
 </script>
 
 <div class="flex justify-center pb-8">

@@ -9,12 +9,25 @@ export type Props = TimeSlot['rooms'][number] & {
 
 const { index, name, session, time } = Astro.props
 
-const isFullWidth = ["736106", "736329"].includes(session.id);
+const isFullHeight = ["736106", "736329"].includes(session.id);
+const isFullWidth = [
+    "d8b94ee5-09a3-4b37-a5a1-b37018ffb915",
+    "ba303395-0218-43ca-b004-dcac368a665a",
+    "732591",
+    "760742",
+    "f0412ea6-ef50-45e8-81d7-735f0f608e51",
+    "706820",
+    "707642",
+    "8821de38-8d36-4615-8985-04a92cee3239",
+    "7c890428-e155-43b1-80d8-0357977d6840",
+    "61f9fc51-25af-47d6-b3f2-c0f29efef8c3"
+].includes(session.id);
 const builtClassName = clsx(
     index === 0 && 'md:col-start-2',
     index === 1 && 'md:col-start-3',
     index === 2 && 'md:col-start-4',
-    isFullWidth && 'md:h-[calc(300%+0.5rem)]',
+    isFullHeight && 'md:h-[calc(300%+0.5rem)]',
+    isFullWidth && 'md:col-span-3',
     !session.isServiceSession ? 'bg-sky-600 hover:bg-sky-800 transition text-white' : 'bg-amber-500 text-white',
     session.isServiceSession ? 'py-2' : 'py-4',
     'rounded-md px-4'
