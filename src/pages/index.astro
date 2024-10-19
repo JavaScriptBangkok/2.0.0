@@ -7,16 +7,18 @@ import Dates from '$new-front/dates.astro'
 import Map from '$new-front/map.astro'
 import Sponsors from '$new-front/sponsors.astro'
 import MobileStrip from '$playground/mobileStrip.svelte'
-import Schedule from "$new-front/schedule.astro";
+import Schedule from '$new-front/schedule.astro'
 ---
 
-<Base title="JavaScript Bangkok 2.0.0">
-  <div class="max-w-[88rem] mx-auto h-screen md:h-[64rem] bg-white overflow-hidden relative">
+<Base title="JavaScript Bangkok 2.0.1">
+  <div
+    class="relative mx-auto h-screen max-w-[88rem] overflow-hidden bg-white md:h-[64rem]"
+  >
     <Logo />
-    <div class="max-w-[128rem] mx-auto hidden md:block">
+    <div class="mx-auto hidden max-w-[128rem] md:block">
       <Patterns client:only="svelte" />
     </div>
-    <div class="max-w-[128rem] mx-auto md:hidden absolute bottom-0 -left-8">
+    <div class="absolute -left-8 bottom-0 mx-auto max-w-[128rem] md:hidden">
       <MobileStrip client:only="svelte" />
     </div>
   </div>
@@ -28,9 +30,9 @@ import Schedule from "$new-front/schedule.astro";
   <Sponsors />
 
   <script
-      type="module"
-      src="https://cdn.jsdelivr.net/npm/eventpop-tickets-widget@3.0.0-next.8/dist/eventpop-tickets-widget.js"
-      is:inline></script>
+    type="module"
+    src="https://cdn.jsdelivr.net/npm/eventpop-tickets-widget@3.0.0-next.8/dist/eventpop-tickets-widget.js"
+    is:inline></script>
   <script
     src="https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.core.js"
     crossorigin="anonymous"

@@ -1,78 +1,96 @@
 ---
-import dayjs from "dayjs";
+import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import timezone from 'dayjs/plugin/timezone'
-import { Picture } from 'astro:assets';
+import { Picture } from 'astro:assets'
 
 import { getSessionizeData } from '$sessionize/getSessionizeData'
-import type { Session, Speaker, Room } from "$sessionize/types";
-import Base from "$layouts/base.astro";
-import LogoHorizontal from "$sprites/logoHorizontal.astro";
+import type { Session, Speaker, Room } from '$sessionize/types'
+import Base from '$layouts/base.astro'
+import LogoHorizontal from '$sprites/logoHorizontal.astro'
 
 export interface Props {
-    session: Session
-    speakers: Speaker[]
-    room: Room
+  session: Session
+  speakers: Speaker[]
+  room: Room
 }
 
 dayjs.extend(utc)
 dayjs.extend(timezone)
 
 export const getStaticPaths = async () => {
-    const { sessions, speakers, rooms } = await getSessionizeData()
-	return sessions.map(session => ({
-        params: {
-            id: session.id
-        },
-        props: {
-            session,
-            speakers: session.speakers.map(speakerId => speakers.find(speaker => speaker.id === speakerId)),
-            room: rooms.find(room => room.id === session.roomId),
-        }
-    }));
+  const { sessions, speakers, rooms } = await getSessionizeData()
+  return sessions.map(session => ({
+    params: {
+      id: session.id,
+    },
+    props: {
+      session,
+      speakers: session.speakers.map(speakerId =>
+        speakers.find(speaker => speaker.id === speakerId)
+      ),
+      room: rooms.find(room => room.id === session.roomId),
+    },
+  }))
 }
 
-const { session, speakers, room  } = Astro.props
+const { session, speakers, room } = Astro.props
 ---
 
-<Base title=`${session.title} | JavaScript Bangkok 2.0.0`>
-    <nav class="py-2 px-4 bg-brand-orange">
-        <a href="/" data-astro-prefetch>
-            <LogoHorizontal class="h-12 text-white" />
-        </a>
-    </nav>
-    <section class="px-8 pt-12 md:px-20 md:pt-24 pb-12 min-h-[calc(100dvh-224px)]">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {speakers.map(speaker => (
-                <div class="flex space-x-4 items-center">
-                    <div class="w-20 md:w-32 aspect-square shrink-0">
-                        <Picture
-                            src={speaker.profilePicture}
-                            class="w-full aspect-square rounded-full"
-                            formats={['avif', 'webp']}
-                            alt={speaker.fullName}
-                            width="200"
-                            height="200"
-                        />
-                    </div>
-                    <div>
-                        <h1 class="text-3xl md:text-4xl font-extrabold">{speaker.fullName}</h1>
-                        <h2 class="md:text-lg">{speaker.tagLine}</h2>
-                        <div class="flex gap-2 pt-2 flex-wrap">
-                            {speaker.links.map(link => (
-                                <a href={link.url} class="underline">{link.title}</a>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            ))}
-        </div>
-        <div class="max-w-xl pt-8 space-y-4">
-            <h1 class="font-bold text-2xl">{session.title}</h1>
-            <div class="flex">
-                <p class="font-mono text-white bg-black rounded py-1 px-3 text-sm font-bold">{dayjs(session.startsAt).tz('Asia/Bangkok').format("(ddd) D MMMM YYYY, HH:mm")} @{room.name}</p>
+<Base title=`${session.title} | JavaScript Bangkok 2.0.1`>
+  <nav class="bg-brand-orange px-4 py-2">
+    <a href="/" data-astro-prefetch>
+      <LogoHorizontal class="h-12 text-white" />
+    </a>
+  </nav>
+  <section
+    class="min-h-[calc(100dvh-224px)] px-8 pb-12 pt-12 md:px-20 md:pt-24"
+  >
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+      {
+        speakers.map(speaker => (
+          <div class="flex items-center space-x-4">
+            <div class="aspect-square w-20 shrink-0 md:w-32">
+              <Picture
+                src={speaker.profilePicture}
+                class="aspect-square w-full rounded-full"
+                formats={['avif', 'webp']}
+                alt={speaker.fullName}
+                width="200"
+                height="200"
+              />
             </div>
-            <p>{session.description}</p>
-        </div>
-    </section>
+            <div>
+              <h1 class="text-3xl font-extrabold md:text-4xl">
+                {speaker.fullName}
+              </h1>
+              <h2 class="md:text-lg">{speaker.tagLine}</h2>
+              <div class="flex flex-wrap gap-2 pt-2">
+                {speaker.links.map(link => (
+                  <a href={link.url} class="underline">
+                    {link.title}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+    <div class="max-w-xl space-y-4 pt-8">
+      <h1 class="text-2xl font-bold">{session.title}</h1>
+      <div class="flex">
+        <p
+          class="rounded bg-black px-3 py-1 font-mono text-sm font-bold text-white"
+        >
+          {
+            dayjs(session.startsAt)
+              .tz('Asia/Bangkok')
+              .format('(ddd) D MMMM YYYY, HH:mm')
+          } @{room.name}
+        </p>
+      </div>
+      <p>{session.description}</p>
+    </div>
+  </section>
 </Base>
