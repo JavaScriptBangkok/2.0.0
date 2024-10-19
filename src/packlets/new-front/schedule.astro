@@ -8,14 +8,14 @@ import Switcher from "$schedule/switcher.svelte";
 const schedules = await getSessionizeSchedules()
 
 const container = await experimental_AstroContainer.create();
-const workshopDay = await container.renderToString(Day, {
-    // @ts-ignore
-    props: schedules[0]
-});
-const conferenceDay = await container.renderToString(Day, {
-    // @ts-ignore
-    props: schedules[1]
-});
+// const workshopDay = await container.renderToString(Day, {
+//     // @ts-ignore
+//     props: schedules[0]
+// });
+// const conferenceDay = await container.renderToString(Day, {
+//     // @ts-ignore
+//     props: schedules[1]
+// });
 ---
 
 <section class="py-12 px-8 bg-white">
@@ -23,11 +23,19 @@ const conferenceDay = await container.renderToString(Day, {
         <h1 class="pb-6 text-5xl font-bold text-brand-orange">Schedule</h1>
     </div>
 
-    <Switcher
-        workshopHtml={workshopDay}
-        conferenceHtml={conferenceDay}
-        client:idle
-    />
+    <h1 class="font-bold text-3xl md:text-4xl">
+        Conference
+    </h1>
+    <h2 class="md:text-lg pb-8">
+        (Sat) October 19, 2024 @True Digital Park
+    </h2>
+    <Day {...schedules[1]} />
+
+    <!--<Switcher-->
+    <!--    workshopHtml={workshopDay}-->
+    <!--    conferenceHtml={conferenceDay}-->
+    <!--    client:idle-->
+    <!--/>-->
     <!--<Day {...schedules[0]} />-->
     <!--<Day {...schedules[1]} />-->
 </section>
